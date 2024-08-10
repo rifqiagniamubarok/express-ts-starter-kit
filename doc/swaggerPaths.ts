@@ -6,7 +6,7 @@ const registerDoc = JSON.parse(fs.readFileSync(path.join(__dirname, 'paths/regis
 
 // Gabungkan semua path untuk auth
 const paths = {
-  '/v1/auth/register': registerDoc,
+  '/v1/api/auth/register': registerDoc,
 };
 
 // Ekspor paths sebagai default
