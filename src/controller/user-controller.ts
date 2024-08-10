@@ -8,6 +8,7 @@ export class UserController {
       const request: CreateUserRequest = req.body;
       const response = await UserService.register(request);
       res.status(200).json({
+        success: true,
         data: response,
       });
     } catch (error) {
