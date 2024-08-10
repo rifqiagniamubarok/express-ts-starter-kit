@@ -8,7 +8,7 @@ describe('POST /api/users', () => {
     await UserTest.delete();
   });
   it('should reject register new user if request is invalid', async () => {
-    const response = await supertest(web).post('/api/users').send({
+    const response = await supertest(web).post('/v1/api/auth/register').send({
       name: '',
       username: '',
       password: '',
@@ -20,7 +20,7 @@ describe('POST /api/users', () => {
   });
 
   it('should register new user', async () => {
-    const response = await supertest(web).post('/api/users').send({
+    const response = await supertest(web).post('/v1/api/auth/register').send({
       name: 'test',
       username: 'test',
       password: 'test',
