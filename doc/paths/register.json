@@ -10,7 +10,7 @@
             "type": "object",
             "properties": {
               "name": { "type": "string", "example": "test1" },
-              "usernam": { "type": "string", "example": "test" },
+              "username": { "type": "string", "example": "test" },
               "password": { "type": "string", "example": "test" }
             }
           }
