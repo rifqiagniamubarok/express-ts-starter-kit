@@ -8,5 +8,5 @@ export const web = express();
 web.use(express.json());
 setupSwagger(web);
 
-web.use(publicRouter);
+web.use('/v1/api', publicRouter);
 web.use(errorMiddleware);
