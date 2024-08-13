@@ -1,6 +1,7 @@
+import { sign } from 'jsonwebtoken';
 import { prismaClient } from '../application/database';
 import { ResponseError } from '../error/response-error';
-import { CreateUserRequest, toUserResponse, UserResponse } from '../model/user-model';
+import { CreateUserRequest, LoginRequest, LoginResponse, toLoginResponse, toUserResponse, UserResponse } from '../model/user-model';
 import { UserValidation } from '../validation/user-validation';
 import { Validation } from '../validation/validation';
 import { hash, compare } from 'bcryptjs';
@@ -24,5 +25,21 @@ export class UserService {
     const user = await prismaClient.user.create({ data: registerRequest });
 
     return toUserResponse(user);
+  }
+
+  static async login(request: LoginRequest): Promise<LoginResponse> {
+    const loginRequest = Validation.validate(UserValidation.LOGIN, request);
+
+    const user = await prismaClient.user.findUniqueOrThrow({
+      where: { username: loginRequest.username },
+    });
+
+    if (!user) {
+      throw new ResponseError(400, 'Username or password wrong');
+    }
+
+    const token = sign({ id: user.id, name: user.name, username: user.username }, 'shhhhh');
+
+    return toLoginResponse(user, token);
   }
 }
