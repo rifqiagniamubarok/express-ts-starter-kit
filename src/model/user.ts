@@ -2,11 +2,11 @@ import { User } from '@prisma/client';
 
 export interface UserResponse {
   name: string;
-  username: string;
+  email: string;
 }
 
 export type CreateUserRequest = {
-  username: string;
+  email: string;
   name: string;
   password: string;
 };
@@ -14,13 +14,13 @@ export type CreateUserRequest = {
 export const toUserResponse = (user: User): UserResponse => {
   return {
     name: user.name,
-    username: user.username,
+    email: user.email,
   };
 };
 export const toLoginResponse = (user: User, token: string): LoginResponse => {
   return {
     name: user.name,
-    username: user.username,
+    email: user.email,
     token,
   };
 };

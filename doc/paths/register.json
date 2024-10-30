@@ -10,7 +10,7 @@
             "type": "object",
             "properties": {
               "name": { "type": "string", "example": "test1" },
-              "username": { "type": "string", "example": "test" },
+              "email": { "type": "string", "example": "test@yopmail.com" },
               "password": { "type": "string", "example": "test" }
             }
           }
@@ -28,7 +28,7 @@
                   "success": true,
                   "data": {
                     "name": "user",
-                    "username": "testing"
+                    "email": "testing"
                   }
                 }
               }

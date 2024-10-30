@@ -1,4 +1,3 @@
-import { OAS3Definition } from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
 import docPaths from '../../doc/swaggerPaths';

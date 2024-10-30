@@ -10,7 +10,7 @@ describe('POST /api/users', () => {
   it('should reject register new user if request is invalid', async () => {
     const response = await supertest(web).post('/v1/api/auth/register').send({
       name: '',
-      username: '',
+      email: '',
       password: '',
     });
 
@@ -22,19 +22,19 @@ describe('POST /api/users', () => {
   it('should register new user', async () => {
     const response = await supertest(web).post('/v1/api/auth/register').send({
       name: 'test',
-      username: 'test',
+      email: 'test@yopmail.com',
       password: 'test',
     });
 
     logger.debug(response.body);
     expect(response.status).toBe(200);
-    expect(response.body.data.username).toBe('test');
+    expect(response.body.data.email).toBe('test@yopmail.com');
     expect(response.body.data.name).toBe('test');
   });
 
   it('should reject login user if request is invalid', async () => {
     const response = await supertest(web).post('/v1/api/auth/login').send({
-      username: '',
+      email: '',
       password: '',
     });
 
@@ -45,20 +45,20 @@ describe('POST /api/users', () => {
 
   it('should login user', async () => {
     const response = await supertest(web).post('/v1/api/auth/login').send({
-      username: 'test',
+      email: 'test@yopmail.com',
       password: 'test',
     });
 
     logger.debug(response.body);
     expect(response.status).toBe(200);
     expect(response.body.data.name).toBe('test');
-    expect(response.body.data.username).toBe('test');
+    expect(response.body.data.email).toBe('test@yopmail.com');
     expect(response.body.data.token).toBeDefined();
   });
 
   it('should fail login user because already exist', async () => {
     const response = await supertest(web).post('/v1/api/auth/register').send({
-      username: 'test',
+      email: 'test@yopmail.com',
       password: 'test',
     });
 
